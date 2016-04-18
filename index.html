@@ -17,5 +17,14 @@
 </head>
 <body class="fullbleed">
   <detroit-youtube></detroit-youtube>
+
+  <!-- Connecting and Loding the Youtube API -->
+  <script>
+    function handleClientLoad(){
+      gapi.client.setApiKey("AIzaSyD98kp3M1CO6DemXutMuI5qMPhrpypGzuo");
+      gapi.client.load('youtube', 'v3');
+    }
+  </script>
+  <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 </body>
 </html>

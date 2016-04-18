@@ -10,7 +10,6 @@
 <link rel="import" href="/bower_components/paper-input/paper-input.html" />
 <link rel="import" href="/bower_components/iron-ajax/iron-ajax.html" />
 
-
 <dom-module id="detroit-youtube">
   <template>
     <style is="custom-style">
@@ -33,7 +32,7 @@
     <paper-header-panel mode="standard">
       <paper-toolbar class="layout flex-horizontal">
         <div id="title">DGD YouTube</div>
-        <paper-input no-label-float value={{searchQuery}}></paper-input>
+        <paper-input no-label-float value={{searchQuery}} autofocus></paper-input>
       </paper-toolbar>
 
       <div class="fit" on-tap="_tappedPages">
@@ -42,9 +41,8 @@
                              exit-animation="slide-left-animation">
           <neon-animatable>
             <ul>
-              <li>Test</li>
-              <template is="dom-repeat" items="{{artistsResult.artists.items}}">
-                <li>{{item.name}}</li>
+              <template is="dom-repeat" items="{{searchResult}}">
+                <li>{{item.snippet.title}}</li>
               </template>
             </ul>
             <!-- Suggestions for before searching  (MAYBE) -->
@@ -56,30 +54,44 @@
       </div>
     </paper-header-panel>
 
-    <iron-ajax
+<!-- How we would have done it, if we were using Spotify -->
+<!--     <iron-ajax
         auto
         method="get"
         url="https://api.spotify.com/v1/search"
         params="[[_getSpotifySearchAjaxParams(searchQuery)]]"
         handle-as="json"
         last-response="{{artistsResult}}"
-        debounce-duration="250"> </iron-ajax>
+        debounce-duration="250"> </iron-ajax> -->
 
   </template>
 
   <script>
+
+
     // element registration
     'use strict';
     class DetroitYoutube {
       beforeRegister () {
         this.is = 'detroit-youtube';
 
-        this.properties = {};
+        this.properties = {
+          searchResult: {
+            type:Array,
+            value: ()=>{return [];}
+          },
+
+          searchQuery: {
+            type: String,
+            value: "",
+            observer: "_searchQueryObserver"
+          }
+        };
       }
 
-      ready(){
+      ready(){}
 
-      }
+      attached(){}
 
       _getSpotifySearchAjaxParams(artistQuery){
         return {
@@ -88,9 +100,28 @@
         };
       }
 
+      _searchQueryObserver(newQuery, old){
+        if(!newQuery) return;
+        this.debounce("searchYoutubeDebouncer", this._searchYoutube, 300);
+      }
+
+
+      _searchYoutube(){
+        gapi.client.youtube.search.list({
+          part: "snippet",
+          q: this.searchQuery,
+          type: "video",
+          order: "relevance",
+        })
+        .execute(response => {
+          this.searchResult = response.items;
+        });
+      }
+
       _tappedPages(){
         this.$.pages.selectNext();
       }
     }
     Polymer(DetroitYoutube);
+
   </script>
