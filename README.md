@@ -1,2 +1,2 @@
-# Detroit-Google-Developer
-I could not come up with a better name
+# Detroit Google Developer's Demo
+It now has a better name
