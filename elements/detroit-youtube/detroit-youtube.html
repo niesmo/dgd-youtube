@@ -8,6 +8,7 @@
 <link rel="import" href="/bower_components/paper-toolbar/paper-toolbar.html" />
 <link rel="import" href="/bower_components/paper-styles/paper-styles.html" />
 <link rel="import" href="/bower_components/paper-input/paper-input.html" />
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html" />
 
 
 <dom-module id="detroit-youtube">
@@ -26,12 +27,13 @@
       }
     </style>
 
+
+
     <!-- Search -->
     <paper-header-panel mode="standard">
       <paper-toolbar class="layout flex-horizontal">
         <div id="title">DGD YouTube</div>
-        <paper-input no-label-float></paper-input>
-
+        <paper-input no-label-float value={{searchQuery}}></paper-input>
       </paper-toolbar>
 
       <div class="fit" on-tap="_tappedPages">
@@ -39,7 +41,12 @@
                              entry-animation="slide-from-right-animation"
                              exit-animation="slide-left-animation">
           <neon-animatable>
-            1
+            <ul>
+              <li>Test</li>
+              <template is="dom-repeat" items="{{artistsResult.artists.items}}">
+                <li>{{item.name}}</li>
+              </template>
+            </ul>
             <!-- Suggestions for before searching  (MAYBE) -->
 
             <!-- Search Results -->
@@ -48,6 +55,15 @@
         </neon-animated-pages>
       </div>
     </paper-header-panel>
+
+    <iron-ajax
+        auto
+        method="get"
+        url="https://api.spotify.com/v1/search"
+        params="[[_getSpotifySearchAjaxParams(searchQuery)]]"
+        handle-as="json"
+        last-response="{{artistsResult}}"
+        debounce-duration="250"> </iron-ajax>
 
   </template>
 
@@ -63,6 +79,13 @@
 
       ready(){
 
+      }
+
+      _getSpotifySearchAjaxParams(artistQuery){
+        return {
+          type: "artist",
+          q: artistQuery
+        };
       }
 
       _tappedPages(){
