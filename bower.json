@@ -1,0 +1,21 @@
+{
+  "name": "Detroit-Google-Developer",
+  "homepage": "https://github.com/niesmo/Detroit-Google-Developer",
+  "description": "The Demo app for the Detroit Google Developer.",
+  "main": "",
+  "authors": [
+    "Dan Schnau | Dean Dreon | Nima Esmaili Mokaram"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0"
+  }
+}
