@@ -26,12 +26,10 @@
       }
     </style>
 
-
-
-    <!-- Search -->
     <paper-header-panel mode="standard">
       <paper-toolbar class="layout flex-horizontal">
         <div id="title">DGD YouTube</div>
+        <!-- Search -->
         <paper-input no-label-float value={{searchQuery}} autofocus></paper-input>
       </paper-toolbar>
 
@@ -40,14 +38,12 @@
                              entry-animation="slide-from-right-animation"
                              exit-animation="slide-left-animation">
           <neon-animatable>
+            <!-- Search Results -->
             <ul>
               <template is="dom-repeat" items="{{searchResult}}">
                 <li>{{item.snippet.title}}</li>
               </template>
             </ul>
-            <!-- Suggestions for before searching  (MAYBE) -->
-
-            <!-- Search Results -->
           </neon-animatable>
           <neon-animatable> 2 </neon-animatable>
         </neon-animated-pages>
