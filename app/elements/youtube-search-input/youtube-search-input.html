@@ -1,0 +1,22 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="youtube-search-input">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    
+    <paper-input label="search"></paper-input>
+  </template>
+  <script>
+    class YoutubeSearchInput {
+      beforeRegister() {
+        this.is = "youtube-search-input";
+      }
+    }
+    Polymer(YoutubeSearchInput);
+  </script>
+</dom-module>
