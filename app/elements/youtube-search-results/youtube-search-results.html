@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="youtube-search-results">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <template is="dom-repeat" items="[[results]]">
+      <youtube-search-result-item data="[[item]]" class="layout horizontal">
+        <img src="[[item.snippet.thumbnails.default.url]]" alt="[[item.snippet.title]]"></img>
+        <result-title>[[item.snippet.title]]</result-title>
+        <result-description>[[item.snippet.descrption]]</result-description>
+      </youtube-search-result-item>
+    </template>
+
+  </template>
+  <script>
+    Polymer({
+      is: "youtube-search-results",
+
+      properties:{
+        results : {
+          type: Array,
+          value: function(){ return []; },
+          observer: "_resultsObserver"
+        }
+      },
+
+      _resultsObserver: function(results){
+        console.log("Result Component:", results);
+      }
+    });
+  </script>
+</dom-module>

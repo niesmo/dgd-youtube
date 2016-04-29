@@ -1,0 +1,31 @@
+<!--
+A comment describing this element
+
+Example:
+
+    <my-elem></my-elem>
+
+Example:
+
+    <my-elem>
+      <h2>Hello my-elem</h2>
+    </my-elem>
+
+@demo demo/index.html
+-->
+
+<dom-module id="youtube-search-result-item">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div><p>{{data.snippet.title}}</p></div>
+  </template>
+  <script>
+    Polymer({
+      is: 'youtube-search-result-item'
+    });
+  </script>
+</dom-module>

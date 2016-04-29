@@ -64,20 +64,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <!-- endbuild -->
 
-  <paper-header-panel class="flex">
-    <paper-toolbar>
-      <div>YouTube Demo</div>
-      <youtube-search-input></youtube-search-input>
-    </paper-toolbar>
-  </paper-header-panel>
 
-  <youtube-search-result></youtube-search-result>
-  <h1>Hello Everyone</h1>
+  <template is="dom-bind">
+    <paper-header-panel class="flex">
+      <paper-toolbar>
+        <div>YouTube Demo</div>
+        <youtube-search-input results="{{searchResult}}"></youtube-search-input>
+      </paper-toolbar>
+      <section>
+        <paper-material elevation="1" class="layout horizontal">
+          <youtube-search-results results="{{searchResult}}" class="layout vertical"></youtube-search-result>
+        </paper-material>
+      </section>
+    </paper-header-panel>
+  </template>
+
 
 
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
-  <!-- endbuild-->
+  <!-- endbuild -->
+
 </body>
 
 </html>

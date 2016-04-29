@@ -1,6 +1,9 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 
+<link rel="import" href="../../elements/import-google-apis.html">
+
+
 <dom-module id="youtube-search-input">
   <template>
     <style>
@@ -8,15 +11,66 @@
         display: block;
       }
     </style>
-    
-    <paper-input label="search"></paper-input>
+
+    <paper-input id="query" no-label value="{{searchQuery}}" disabled$="[[!youtubeIsReady]]"></paper-input>
   </template>
-  <script>
-    class YoutubeSearchInput {
-      beforeRegister() {
-        this.is = "youtube-search-input";
-      }
-    }
-    Polymer(YoutubeSearchInput);
-  </script>
 </dom-module>
+<script>
+  Polymer({
+    is : "youtube-search-input",
+
+    properties: {
+      searchQuery : {
+        type: String,
+        observer: "_searchQueryObserver"
+      },
+
+      results: {
+        type: Array,
+        notify: true
+      },
+
+      youtubeIsReady: {
+        type: Boolean,
+        value: function(){return false;},
+        notify: true
+      }
+    },
+
+    ready: function() {
+      if(this._youtubeIsLoaded()){
+        this._apiLoaded();
+      }
+      else{
+        this.listen(window, 'youtubeAPILoaded', '_apiLoaded');
+      }
+    },
+
+    _apiLoaded: function(e){
+      this.set('youtubeIsReady', true);
+      this.unlisten(window, 'youtubeAPILoaded', '_apiLoaded');
+    },
+
+    _youtubeIsLoaded: function(){
+      return !!(gapi && gapi.client && gapi.client.youtube && gapi.client.youtube.search);
+    },
+
+    _searchQueryObserver: function(query){
+      if(!query) return;
+      this.debounce("searchYoutubeDebouncer", this._searchYoutube, 300);
+    },
+
+    _searchYoutube: function(){
+      gapi.client.youtube.search.list({
+        part: "snippet",
+        q: this.searchQuery,
+        type: "video",
+        order: "relevance",
+      })
+      .execute(function(response){
+        console.log("Input Component: ", response.items);
+        this.set('results', response.items);
+      }.bind(this));
+    },
+  });
+</script>

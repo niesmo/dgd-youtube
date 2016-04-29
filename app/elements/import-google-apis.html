@@ -1,0 +1,20 @@
+<!-- Connecting and Loding the Youtube API -->
+<script>
+  function apiLoadedHandler(){
+    gapi.client.setApiKey("AIzaSyD98kp3M1CO6DemXutMuI5qMPhrpypGzuo");
+    gapi.client.load('youtube', 'v3', function(error){
+      if(error){
+        // fire event that it we could not load it
+      }
+      else{
+        // fire event that we loaded this just fine
+        var event = Event ? new Event('youtubeAPILoaded') : document.createEvent('Event');
+        if(event.initEvent) event.initEvent('youtubeAPILoaded', true, true);
+        window.dispatchEvent(event);
+      }
+    });
+
+    //"https://AIzaSyD98kp3M1CO6DemXutMuI5qMPhrpypGzuo.appspot.com/_ah/api"
+  }
+</script>
+<script id="script-tag" src="https://apis.google.com/js/client.js?onload=apiLoadedHandler"></script>
