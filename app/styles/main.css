@@ -13,11 +13,37 @@ body{
 }
 
 body {
-  background: #fafafa;
+  background: #f2f2f2;
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
 }
 
 .page-title {
   outline: none;
+}
+
+paper-material.results{
+  padding:20px;
+}
+
+paper-material{
+  background: white;
+  margin-top: 20px;
+  width: 960px;
+  max-width: 100%;
+}
+
+paper-toolbar div.title{
+  position: relative;
+  top: 23px;
+  margin-right: 25px;
+  color: rgba(255,255,255, 0.7)
+}
+
+youtube-search-input{
+  position:relative;
+  top:-6px;
+  width: 500px;
+  max-width: 100%;
+
 }

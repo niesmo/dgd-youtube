@@ -60,22 +60,52 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 
 <body class="fullbleed layout vertical">
-<!-- <body class=""> -->
   <!-- build:remove -->
   <span id="browser-sync-binding"></span>
   <!-- endbuild -->
 
-
   <template is="dom-bind">
     <paper-header-panel class="flex">
       <paper-toolbar>
-          <div>YouTube Demo</div>
+        <div class="toolbar-wrapper layout horizontal ">
+          <div class="title">YouTube Demo</div>
           <youtube-search-input results="{{searchResult}}"></youtube-search-input>
+        </div>
       </paper-toolbar>
-      <section class="fit layout horizontal center-justified" mode="standard">
-        <paper-material elevation="1" class="layout horizontal">
-          <youtube-search-results results="{{searchResult}}" class="flex layout vertical red"></youtube-search-result>
-        </paper-material>
+
+      <section>
+        <neon-animated-pages
+                      id="pages"
+                      entry-animation="slide-from-right-animation"
+                      exit-animation="slide-left-animation"
+                      attr-for-selected="name"
+                      selected="search">
+          <neon-animatable name="search">
+            <section class="layout horizontal center-justified" mode="standard">
+              <paper-material elevation="1" class="layout horizontal results">
+                <youtube-search-results selected-video-id={{videoId}} results="{{searchResult}}" class="flex layout vertical"></youtube-search-result>
+              </paper-material>
+            </section>
+
+          </neon-animatable>
+          <neon-animatable name="view">
+            <section class="layout horizontal center-justified">
+              <paper-material elevation="1">
+                <google-youtube
+                  id="player"
+                  video-id$="{{videoId}}"
+                  height="270px"
+                  width="480px"
+                  rel="0"
+                  start="5"
+                  autoplay="1"
+                  fluid>
+                </google-youtube>
+
+              </paper-material>
+            </section>
+          </neon-animatable>
+        </neon-animated-pages>
       </section>
     </paper-header-panel>
   </template>
