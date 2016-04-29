@@ -2,21 +2,25 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
-<dom-module id="youtube-search-results">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
+<link rel="import" href="../../elements/youtube-search-result-item/youtube-search-result-item.html">
 
-    <template is="dom-repeat" items="[[results]]">
-      <youtube-search-result-item data="[[item]]" class="layout horizontal">
-        <img src="[[item.snippet.thumbnails.default.url]]" alt="[[item.snippet.title]]"></img>
-        <result-title>[[item.snippet.title]]</result-title>
-        <result-description>[[item.snippet.descrption]]</result-description>
-      </youtube-search-result-item>
-    </template>
+<dom-module id="youtube-search-results">
+  <style is="custom-style">
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+
+    <div class="layout vertical">
+      <template is="dom-repeat" items="[[results]]">
+        <youtube-search-result-item data="[[item]]" class="">
+          <img src="[[item.snippet.thumbnails.default.url]]" alt="[[item.snippet.title]]"></img>
+          <result-title>[[item.snippet.title]]</result-title>
+          <result-description>[[item.snippet.description]]</result-description>
+        </youtube-search-result-item>
+      </template>
+    </div>
 
   </template>
   <script>

@@ -60,6 +60,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 
 <body class="fullbleed layout vertical">
+<!-- <body class=""> -->
   <!-- build:remove -->
   <span id="browser-sync-binding"></span>
   <!-- endbuild -->
@@ -68,12 +69,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template is="dom-bind">
     <paper-header-panel class="flex">
       <paper-toolbar>
-        <div>YouTube Demo</div>
-        <youtube-search-input results="{{searchResult}}"></youtube-search-input>
+          <div>YouTube Demo</div>
+          <youtube-search-input results="{{searchResult}}"></youtube-search-input>
       </paper-toolbar>
-      <section>
+      <section class="fit layout horizontal center-justified" mode="standard">
         <paper-material elevation="1" class="layout horizontal">
-          <youtube-search-results results="{{searchResult}}" class="layout vertical"></youtube-search-result>
+          <youtube-search-results results="{{searchResult}}" class="flex layout vertical red"></youtube-search-result>
         </paper-material>
       </section>
     </paper-header-panel>

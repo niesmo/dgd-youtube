@@ -7,6 +7,11 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
+html,
+body{
+  height: 100%;
+}
+
 body {
   background: #fafafa;
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -16,5 +21,3 @@ body {
 .page-title {
   outline: none;
 }
-
-

@@ -1,31 +1,19 @@
-<!--
-A comment describing this element
-
-Example:
-
-    <my-elem></my-elem>
-
-Example:
-
-    <my-elem>
-      <h2>Hello my-elem</h2>
-    </my-elem>
-
-@demo demo/index.html
--->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="youtube-search-result-item">
+  <style>
+    :host {
+      display: inline-block;
+    }
+  </style>
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <div><p>{{data.snippet.title}}</p></div>
+    <content selector="img"></content>
+    <content selector="result-title"></content>
+    <content selector="result-description"></content>
   </template>
   <script>
     Polymer({
-      is: 'youtube-search-result-item'
+      is: 'youtube-search-result-item',
     });
   </script>
 </dom-module>

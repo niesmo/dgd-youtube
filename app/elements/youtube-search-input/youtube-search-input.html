@@ -5,13 +5,13 @@
 
 
 <dom-module id="youtube-search-input">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
 
+  <template>
     <paper-input id="query" no-label value="{{searchQuery}}" disabled$="[[!youtubeIsReady]]"></paper-input>
   </template>
 </dom-module>
@@ -44,6 +44,10 @@
       else{
         this.listen(window, 'youtubeAPILoaded', '_apiLoaded');
       }
+
+      this.async(function(){
+        this.$.query.value = "Madonna";
+      }, 550);
     },
 
     _apiLoaded: function(e){
