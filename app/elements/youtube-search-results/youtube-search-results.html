@@ -32,20 +32,24 @@
   </template>
 
   <script>
-    Polymer({
-      is: "youtube-search-results",
+    (function(){
+      'use strict';
+      
+      Polymer({
+        is: "youtube-search-results",
 
-      properties:{
-        results : {
-          type: Array,
-          value: function(){ return []; },
-        },
+        properties:{
+          results : {
+            type: Array,
+            value: function(){ return []; },
+          },
 
-        selectedVideoId: {
-          type:String,
-          notify: true
+          selectedVideoId: {
+            type:String,
+            notify: true
+          }
         }
-      }
-    });
+      });
+    })();
   </script>
 </dom-module>

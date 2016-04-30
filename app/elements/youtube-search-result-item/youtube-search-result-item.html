@@ -35,49 +35,53 @@
     </div>
   </template>
   <script>
-    Polymer({
-      is: 'youtube-search-result-item',
+    (function() {
+      'use strict';
+      
+      Polymer({
+        is: 'youtube-search-result-item',
 
-      properties: {
-        imageUrl: {
-          type: String
+        properties: {
+          imageUrl: {
+            type: String
+          },
+
+          title: {
+            type: String
+          },
+
+          description: {
+            type: String
+          },
+
+          link: {
+            type: String
+          },
+
+          videoId:{
+            type:String
+          },
+
+          channelLink: {
+            type: String
+          },
+
+          channelTitle: {
+            type: String
+          },
+
+          selectedVideoId: {
+            type:String,
+            notify: true
+          }
+
         },
 
-        title: {
-          type: String
-        },
-
-        description: {
-          type: String
-        },
-
-        link: {
-          type: String
-        },
-
-        videoId:{
-          type:String
-        },
-
-        channelLink: {
-          type: String
-        },
-
-        channelTitle: {
-          type: String
-        },
-
-        selectedVideoId: {
-          type:String,
-          notify: true
+        tapped: function(e){
+          this.set("selectedVideoId", this.videoId);
+          this.fire('video-selected', {videoId: this.videoId});
         }
-
-      },
-
-      tapped: function(e){
-        this.set("selectedVideoId", this.videoId);
-        this.fire('video-selected', {videoId: this.videoId});
-      }
-    });
+      });
+    })();
   </script>
 </dom-module>

@@ -38,64 +38,68 @@
   </template>
 </dom-module>
 <script>
-  Polymer({
-    is : "youtube-search-input",
+  (function(){
+    'use strict';
+    
+    Polymer({
+      is : "youtube-search-input",
 
-    properties: {
-      searchQuery : {
-        type: String,
-        observer: "_searchQueryObserver"
+      properties: {
+        searchQuery : {
+          type: String,
+          observer: "_searchQueryObserver"
+        },
+
+        results: {
+          type: Array,
+          notify: true
+        },
+
+        youtubeIsReady: {
+          type: Boolean,
+          value: function(){return false;},
+          notify: true
+        }
       },
 
-      results: {
-        type: Array,
-        notify: true
+      ready: function() {
+        if(this._youtubeIsLoaded()){
+          this._apiLoaded();
+        }
+        else{
+          this.listen(window, 'youtubeAPILoaded', '_apiLoaded');
+        }
+
+        this.async(function(){
+          this.$.query.value = "Quicken Loans";
+        }, 550);
       },
 
-      youtubeIsReady: {
-        type: Boolean,
-        value: function(){return false;},
-        notify: true
-      }
-    },
+      _apiLoaded: function(e){
+        this.set('youtubeIsReady', true);
+        this.unlisten(window, 'youtubeAPILoaded', '_apiLoaded');
+      },
 
-    ready: function() {
-      if(this._youtubeIsLoaded()){
-        this._apiLoaded();
-      }
-      else{
-        this.listen(window, 'youtubeAPILoaded', '_apiLoaded');
-      }
+      _youtubeIsLoaded: function(){
+        return !!(gapi && gapi.client && gapi.client.youtube && gapi.client.youtube.search);
+      },
 
-      this.async(function(){
-        this.$.query.value = "Quicken Loans";
-      }, 550);
-    },
+      _searchQueryObserver: function(query){
+        if(!query) return;
+        this.debounce("searchYoutubeDebouncer", this._searchYoutube, 300);
+      },
 
-    _apiLoaded: function(e){
-      this.set('youtubeIsReady', true);
-      this.unlisten(window, 'youtubeAPILoaded', '_apiLoaded');
-    },
-
-    _youtubeIsLoaded: function(){
-      return !!(gapi && gapi.client && gapi.client.youtube && gapi.client.youtube.search);
-    },
-
-    _searchQueryObserver: function(query){
-      if(!query) return;
-      this.debounce("searchYoutubeDebouncer", this._searchYoutube, 300);
-    },
-
-    _searchYoutube: function() {
-      gapi.client.youtube.search.list({
-        part: "snippet",
-        q: this.searchQuery,
-        type: "video",
-        order: "relevance",
-      })
-      .execute(function(response){
-        this.set('results', response.items);
-      }.bind(this));
-    },
-  });
+      _searchYoutube: function() {
+        gapi.client.youtube.search.list({
+          part: "snippet",
+          q: this.searchQuery,
+          type: "video",
+          order: "relevance",
+        })
+        .execute(function(response){
+          this.set('results', response.items);
+        }.bind(this));
+      },
+    });
+  })();
 </script>

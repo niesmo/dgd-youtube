@@ -18,31 +18,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="generator" content="Polymer Starter Kit">
   <title>Michigan Dev Fest | YouTube Demo</title>
 
-  <!-- Place favicon.ico in the `app/` directory -->
-
-  <!-- Chrome for Android theme color -->
-  <meta name="theme-color" content="#2E3AA1">
-
-  <!-- Web Application Manifest -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- Tile color for Win8 -->
-  <meta name="msapplication-TileColor" content="#3372DF">
-
-  <!-- Add to homescreen for Chrome on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="PSK">
-  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
-
-  <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
-  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
-
-  <!-- Tile icon for Win8 (144x144) -->
-  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-
   <!-- Because this project uses vulcanize this should be your only html import
        in this file. All other imports should go in elements.html -->
   <link rel="import" href="elements/elements.html">
@@ -55,8 +30,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <!-- endbuild -->
 
-
-
   <!-- For shared styles, shared-styles.html import in elements.html -->
   <style is="custom-style" include="shared-styles"></style>
 </head>
@@ -68,6 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template is="dom-bind">
     <paper-header-panel class="flex">
+      
       <paper-toolbar>
         <div class="toolbar-wrapper layout horizontal ">
           <div class="title">YouTube Demo</div>
@@ -76,20 +50,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-toolbar>
 
       <section>
+        
         <neon-animated-pages
                       id="pages"
                       entry-animation="slide-from-right-animation"
                       exit-animation="slide-left-animation"
                       attr-for-selected="name"
                       selected="search">
+                      
           <neon-animatable name="search">
             <section class="layout horizontal center-justified" mode="standard">
               <paper-material elevation="1" class="layout horizontal results">
                 <youtube-search-results selected-video-id={{videoId}} results="{{searchResult}}" class="flex layout vertical"></youtube-search-result>
               </paper-material>
             </section>
-
           </neon-animatable>
+          
           <neon-animatable name="view">
             <section class="layout horizontal center-justified">
               <paper-material elevation="1">
@@ -103,12 +79,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   autoplay="1"
                   fluid>
                 </google-youtube>
-
               </paper-material>
             </section>
           </neon-animatable>
+          
         </neon-animated-pages>
+        
       </section>
+      
     </paper-header-panel>
   </template>
 

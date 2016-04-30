@@ -10,25 +10,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 (function(document) {
   'use strict';
 
+  var app = document.querySelector('#app');
+  
   window.addEventListener('WebComponentsReady', function() {
     // imports are loaded and elements have been registered
-    componentsLoadedHandler();
-  });
-
-  function componentsLoadedHandler(){
-    // listen for the video id to set
-    document.querySelector("youtube-search-results").addEventListener('video-selected', function(detail){
-      document.querySelector("#pages").selected = "view";
+    var pages = Polymer.dom(document).querySelector("#pages"),
+        youTubePlayer = Polymer.dom(document).querySelector("google-youtube")
+    
+    // listen for change of video id
+    Polymer.dom(document).querySelector('youtube-search-results').addEventListener('video-selected', function(detail){
+      pages.selected = "view";
     });
-
+    
     // listen for user to search and switch context when necessary
-    document.querySelector("youtube-search-input").addEventListener('input', function(detail){
-      document.querySelector("#pages").selected = "search";
-
-      // stop the video
-      document.querySelector("google-youtube").pause();
+    Polymer.dom(document).querySelector("youtube-search-input").addEventListener('input', function(detail){
+      pages.selected = "search";
+      // pause the video
+      youTubePlayer.pause();
     });
-  }
-
-
+  });
 })(document);
