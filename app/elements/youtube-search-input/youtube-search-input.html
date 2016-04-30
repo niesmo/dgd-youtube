@@ -6,29 +6,29 @@
 <link rel="import" href="../../elements/import-google-apis.html">
 
 <dom-module id="youtube-search-input">
-  <style>
-    :host {
-      display: block;
-    }
-
-    paper-input{
-      --paper-input-container-color: rgba(255,255,255, 0.7);
-      --paper-input-container-focus-color: rgba(255,255,255, 0.7);
-      --paper-input-container-input-color: rgba(255,255,255, 0.7);
-
-      --paper-input-suffix: {
-        color:rgba(255,255,255, 0.7);
-      };
-    }
-
-    paper-input[focused]{
-      --paper-input-container-input-color: white;
-    }
-
-  </style>
 
   <template>
+    <style>
+      :host {
+        display: block;
+      }
 
+      paper-input{
+        --paper-input-container-color: rgba(255,255,255, 0.7);
+        --paper-input-container-focus-color: rgba(255,255,255, 0.7);
+        --paper-input-container-input-color: rgba(255,255,255, 0.7);
+
+        --paper-input-suffix: {
+          color:rgba(255,255,255, 0.7);
+        };
+      }
+
+      paper-input[focused]{
+        --paper-input-container-input-color: white;
+      }
+
+    </style>
+    
     <paper-input id="query" no-label value="{{searchQuery}}" disabled$="[[!youtubeIsReady]]">
       <iron-icon suffix icon="search"></iron-icon>
     </paper-input>

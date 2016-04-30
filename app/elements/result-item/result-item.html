@@ -4,31 +4,41 @@
 
 <dom-module id="dgd-badge">
   <template>
-    <style is="custom-style" include="iron-flex">
+    <style include="iron-flex">
       :host {
         display: block;
         max-height: 90px;
         position: relative;
         overflow: hidden;
       }
+      
+      img {
+        @apply(--result-item-image);
+      }
+      
       .text {
         padding: 5px;
         box-sizing: border-box;
         height: 100%;
         overflow: hidden;
+        
+        @apply(--result-item-text-container);
       }
       .text .title {
         padding-bottom: 5px;
         font-weight: bold;
         overflow: elipsis;
         
-        
+        @apply(--result-item-title);
       }
       .text .description {
         font-size: 14px;
         text-overflow: ellipsis;
+        
+        @apply(--result-item-description);
       }
     </style>
+    
     <div class="layout horizontal">
       <div class="image-container">
         <img src="[[imageUrl]]" alt="[[title]]">
