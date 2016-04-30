@@ -67,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   selected="{{selectedVideoId}}"
                   on-iron-select="selectedVideoIdChanged">
                   <template is="dom-repeat" items="[[searchResults]]" as="result">
-                    <youtube-search-result-item
+                    <dgd-badge
                       video-id$="[[result.id.videoId]]"
                       image-url="[[result.snippet.thumbnails.medium.url]]"
                       title="[[result.snippet.title]]"
