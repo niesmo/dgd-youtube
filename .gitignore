@@ -1,6 +1,5 @@
 node_modules
 dist
 bower_components
-firebase.json
 .tmp
 .publish/
