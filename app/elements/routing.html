@@ -34,10 +34,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     page('/', function() {
       app.route = 'search';
+      app.selectedVideoId = '';
     });
 
     page(app.baseUrl, function() {
       app.route = 'search';
+      app.selectedVideoId = '';
+
     });
 
     page('/view/:videoId', function(ctx) {
