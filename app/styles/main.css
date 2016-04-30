@@ -22,14 +22,10 @@ body {
   outline: none;
 }
 
-paper-material.results{
-  padding:20px;
-}
-
 paper-material{
   background: white;
   margin-top: 20px;
-  width: 960px;
+  width: 700px;
   max-width: 100%;
 }
 
@@ -41,9 +37,17 @@ paper-toolbar div.title{
 }
 
 youtube-search-input{
-  position:relative;
-  top:-6px;
+  position: relative;
+  top: -6px;
   width: 500px;
   max-width: 100%;
 
+}
+
+dgd-badge {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+dgd-badge:last-of-type {
+  border-bottom: none;
 }

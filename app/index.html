@@ -62,22 +62,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                            entry-animation="slide-from-left-animation"
                            exit-animation="slide-left-animation">
             <section class="layout horizontal center-justified" mode="standard">
-              
+              <paper-material elevation="1" class="layout vertical results">
                 <iron-selector 
                   attr-for-selected="video-id" 
                   selected="{{selectedVideoId}}"
                   on-iron-select="selectedVideoIdChanged">
                   <template is="dom-repeat" items="[[searchResults]]" as="result">
-                    <paper-material elevation="1" class="layout vertical results"
-                        video-id$="[[result.id.videoId]]">
                       <dgd-badge
-                        image-url="[[result.snippet.thumbnails.medium.url]]"
+                        video-id$="[[result.id.videoId]]"
+                        image-url="[[result.snippet.thumbnails.default.url]]"
                         title="[[result.snippet.title]]"
                         description="[[result.snippet.description]]">
                       </dgd-badge>
-                    </paper-material>
                   </template>
                 </iron-selector>
+              </paper-material>
             </section>
           </neon-animatable>
           

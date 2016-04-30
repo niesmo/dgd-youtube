@@ -1,36 +1,44 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
 
 <dom-module id="dgd-badge">
   <template>
     <style is="custom-style" include="iron-flex">
       :host {
-        display: inline-block;
+        display: block;
+        height: 90px;
+        position: relative;
+        overflow: hidden;
       }
-
-      a {
-          text-decoration: none;
+      .text {
+        padding: 5px;
+        box-sizing: border-box;
+        height: 100%;
+        overflow: hidden;
       }
-
-      .title{
-        font-size:20px;
+      .text .title {
+        padding-bottom: 5px;
+        font-weight: bold;
+        overflow: elipsis;
+        
+        
       }
-
-      img {
-        margin-right: 10px;
-      }
-
-      div.text {
-        margin-top: 10px;
+      .text .description {
+        font-size: 14px;
+        text-overflow: ellipsis;
       }
     </style>
     <div class="layout horizontal">
-      <img src="[[imageUrl]]" alt="[[title]]">
+      <div class="image-container">
+        <img src="[[imageUrl]]" alt="[[title]]">
+      </div>
       <div class="layout vertical text">
-        <div class="title"><a href="#">[[title]]</a></div>
+        <div class="title">[[title]]</div>
         <div class="description">[[description]]</div>
       </div>
     </div>
+    <paper-ripple></paper-ripple>
   </template>
   <script>
     (function() {
