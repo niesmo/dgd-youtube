@@ -43,10 +43,17 @@ youtube-search-input{
   max-width: 100%;
 
 }
-
+.results-header,
+dgd-badge {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.results-header {
+  text-align: right;
+  padding: 6px;
+  font-size: 10px;
+}
 dgd-badge {
   padding: 12px;
-  border-bottom: 1px solid rgba(0,0,0,.1);
 }
 dgd-badge:last-of-type {
   border-bottom: none;

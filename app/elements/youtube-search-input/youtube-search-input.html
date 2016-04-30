@@ -49,7 +49,7 @@
         },
         
         results: {
-          type: Array,
+          type: Object,
           notify: true
         },
         
@@ -83,7 +83,7 @@
 
       _searchQueryObserver: function(query){
         if(!query) {
-          this.set('results', []);
+          this.set('results', {});
           this.cancelDebouncer("searchYoutubeDebouncer");
           return;
         }
@@ -99,7 +99,7 @@
           maxResults: 10
         })
         .execute(function(response){
-          this.set('results', this.searchQuery ? response.items : []);
+          this.set('results', this.searchQuery ? response : {});
         }.bind(this));
       },
       

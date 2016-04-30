@@ -63,11 +63,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                            exit-animation="slide-left-animation">
             <section class="layout horizontal center-justified" mode="standard">
               <paper-material elevation="1" class="layout vertical results">
+                <template is="dom-if"
+                          if="[[searchResults.pageInfo.totalResults]]">
+                  <div class="results-header">About [[searchResults.pageInfo.totalResults]] results</div>
+                </template>
                 <iron-selector 
                   attr-for-selected="video-id" 
                   selected="{{selectedVideoId}}"
                   on-iron-select="selectedVideoIdChanged">
-                  <template is="dom-repeat" items="[[searchResults]]" as="result">
+                  <template is="dom-repeat" items="[[searchResults.items]]" as="result">
                       <dgd-badge
                         video-id$="[[result.id.videoId]]"
                         image-url="[[result.snippet.thumbnails.default.url]]"
