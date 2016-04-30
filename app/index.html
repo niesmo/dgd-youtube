@@ -61,24 +61,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       
           <neon-animatable name="search">
             <section class="layout horizontal center-justified" mode="standard">
-              <paper-material elevation="1" class="layout vertical results">
+              
                 <iron-selector 
                   attr-for-selected="video-id" 
                   selected="{{selectedVideoId}}"
                   on-iron-select="selectedVideoIdChanged">
                   <template is="dom-repeat" items="[[searchResults]]" as="result">
-                    <dgd-badge
-                      video-id$="[[result.id.videoId]]"
-                      image-url="[[result.snippet.thumbnails.medium.url]]"
-                      title="[[result.snippet.title]]"
-                      description="[[result.snippet.description]]"
-                      link="https://www.youtube.com/watch?v=[[result.id.videoId]]"
-                      channel-link="https://www.youtube.com/channel/[[result.snippet.channelId]]"
-                      channel-title="[[result.snippet.channelTitle]]">
-                    </youtube-search-result-item>
+                    <paper-material elevation="1" class="layout vertical results"
+                        video-id$="[[result.id.videoId]]">
+                      <dgd-badge
+                        image-url="[[result.snippet.thumbnails.medium.url]]"
+                        title="[[result.snippet.title]]"
+                        description="[[result.snippet.description]]">
+                        <img src="[[result.snippet.thumbnails.medium.url]]" alt="[[result.snippet.title]]"></img>
+                      </dgd-badge>
+                    </paper-material>
                   </template>
                 </iron-selector>
-              </paper-material>
             </section>
           </neon-animatable>
           

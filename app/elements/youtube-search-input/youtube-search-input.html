@@ -73,14 +73,11 @@
           // import-google-apis.html fires an event when the youTube API is loaded
           this.listen(window, 'youtubeAPILoaded', '_apiLoaded');
         }
-
-        this.async(function(){
-          this.$.query.value = "Quicken Loans";
-        }, 550);
       },
 
       _apiLoaded: function(e){
         this.set('youtubeIsReady', true);
+        this.$.query.value = "Quicken Loans";
         this.unlisten(window, 'youtubeAPILoaded', '_apiLoaded');
       },
 
