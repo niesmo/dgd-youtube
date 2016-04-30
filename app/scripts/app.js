@@ -17,15 +17,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     var pages = Polymer.dom(document).querySelector("#pages"),
         youTubePlayer = Polymer.dom(document).querySelector("google-youtube")
     
-    // listen for change of video id
-    Polymer.dom(document).querySelector('youtube-search-results').addEventListener('video-selected', function(detail){
+    // listen for change of video id: declared in index.html 'on-iron-select="selectedVideoIdChanged"'
+    app.selectedVideoIdChanged = function() {
       pages.selected = "view";
-    });
-    
+    }
     // listen for user to search and switch context when necessary
     Polymer.dom(document).querySelector("youtube-search-input").addEventListener('input', function(detail){
       pages.selected = "search";
-      // pause the video
       youTubePlayer.pause();
     });
   });

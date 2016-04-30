@@ -39,13 +39,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <!-- endbuild -->
 
-  <template is="dom-bind">
+  <template is="dom-bind"
+            id="app">
     <paper-header-panel class="flex">
       
       <paper-toolbar>
         <div class="toolbar-wrapper layout horizontal ">
           <div class="title">YouTube Demo</div>
-          <youtube-search-input results="{{searchResult}}"></youtube-search-input>
+          <youtube-search-input results="{{searchResults}}"></youtube-search-input>
         </div>
       </paper-toolbar>
 
@@ -60,8 +61,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       
           <neon-animatable name="search">
             <section class="layout horizontal center-justified" mode="standard">
-              <paper-material elevation="1" class="layout horizontal results">
-                <youtube-search-results selected-video-id={{videoId}} results="{{searchResult}}" class="flex layout vertical"></youtube-search-result>
+              <paper-material elevation="1" class="layout vertical results">
+                <iron-selector 
+                  attr-for-selected="video-id" 
+                  selected="{{selectedVideoId}}"
+                  on-iron-select="selectedVideoIdChanged">
+                  <template is="dom-repeat" items="[[searchResults]]" as="result">
+                    <youtube-search-result-item
+                      video-id$="[[result.id.videoId]]"
+                      image-url="[[result.snippet.thumbnails.medium.url]]"
+                      title="[[result.snippet.title]]"
+                      description="[[result.snippet.description]]"
+                      link="https://www.youtube.com/watch?v=[[result.id.videoId]]"
+                      channel-link="https://www.youtube.com/channel/[[result.snippet.channelId]]"
+                      channel-title="[[result.snippet.channelTitle]]">
+                    </youtube-search-result-item>
+                  </template>
+                </iron-selector>
               </paper-material>
             </section>
           </neon-animatable>
@@ -71,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-material elevation="1">
                 <google-youtube
                   id="player"
-                  video-id$="{{videoId}}"
+                  video-id$="{{selectedVideoId}}"
                   height="270px"
                   width="480px"
                   rel="0"
