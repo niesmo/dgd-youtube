@@ -45,19 +45,25 @@
       is : "youtube-search-input",
 
       properties: {
+
+        debounceLength: {
+          type: Number,
+          value: 300  
+        },
+        
+        results: {
+          type: Array,
+          notify: true
+        },
+        
         searchQuery : {
           type: String,
           observer: "_searchQueryObserver"
         },
 
-        results: {
-          type: Array,
-          notify: true
-        },
-
         youtubeIsReady: {
           type: Boolean,
-          value: function(){return false;},
+          value: false,
           notify: true
         }
       },
@@ -67,6 +73,7 @@
           this._apiLoaded();
         }
         else{
+          // import-google-apis.html fires an event when the youTube API is loaded
           this.listen(window, 'youtubeAPILoaded', '_apiLoaded');
         }
 
@@ -80,13 +87,13 @@
         this.unlisten(window, 'youtubeAPILoaded', '_apiLoaded');
       },
 
-      _youtubeIsLoaded: function(){
-        return !!(gapi && gapi.client && gapi.client.youtube && gapi.client.youtube.search);
-      },
-
       _searchQueryObserver: function(query){
-        if(!query) return;
-        this.debounce("searchYoutubeDebouncer", this._searchYoutube, 300);
+        if(!query) {
+          this.set('results', []);
+          this.cancelDebouncer("searchYoutubeDebouncer");
+          return;
+        }
+        this.debounce("searchYoutubeDebouncer", this._searchYoutube, this.debounceLength);
       },
 
       _searchYoutube: function() {
@@ -97,9 +104,13 @@
           order: "relevance",
         })
         .execute(function(response){
-          this.set('results', response.items);
+          this.set('results', this.searchQuery ? response.items : []);
         }.bind(this));
       },
+      
+      _youtubeIsLoaded: function(){
+        return !!(gapi && gapi.client && gapi.client.youtube && gapi.client.youtube.search);
+      }
     });
   })();
 </script>
