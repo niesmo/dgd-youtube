@@ -54,12 +54,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         <neon-animated-pages
                       id="pages"
-                      entry-animation="slide-from-right-animation"
-                      exit-animation="slide-left-animation"
                       attr-for-selected="name"
                       selected="search">
                       
-          <neon-animatable name="search">
+          <neon-animatable name="search"
+                           entry-animation="slide-from-left-animation"
+                           exit-animation="slide-left-animation">
             <section class="layout horizontal center-justified" mode="standard">
               
                 <iron-selector 
@@ -73,7 +73,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         image-url="[[result.snippet.thumbnails.medium.url]]"
                         title="[[result.snippet.title]]"
                         description="[[result.snippet.description]]">
-                        <img src="[[result.snippet.thumbnails.medium.url]]" alt="[[result.snippet.title]]"></img>
                       </dgd-badge>
                     </paper-material>
                   </template>
@@ -81,7 +80,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </section>
           </neon-animatable>
           
-          <neon-animatable name="view">
+          <neon-animatable name="view"
+                           entry-animation="slide-from-right-animation"
+                           exit-animation="slide-right-animation">
             <section class="layout horizontal center-justified">
               <paper-material elevation="1">
                 <google-youtube
