@@ -44,7 +44,7 @@ youtube-search-input{
 
 }
 .results-header,
-dgd-badge {
+result-item {
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
 .results-header {
@@ -52,9 +52,9 @@ dgd-badge {
   padding: 6px;
   font-size: 10px;
 }
-dgd-badge {
+result-item {
   padding: 12px;
 }
-dgd-badge:last-of-type {
+result-item:last-of-type {
   border-bottom: none;
 }
