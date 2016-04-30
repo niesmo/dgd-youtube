@@ -41,7 +41,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template is="dom-bind"
             id="app">
-    <paper-header-panel class="flex">
+    <paper-scroll-header-panel class="flex"
+                               id="headerPanelMain">
       
       <paper-toolbar>
         <div class="toolbar-wrapper layout horizontal ">
@@ -55,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <neon-animated-pages
                       id="pages"
                       attr-for-selected="name"
-                      selected="search">
+                      selected="{{route}}">
                       
           <neon-animatable name="search"
                            entry-animation="slide-from-left-animation"

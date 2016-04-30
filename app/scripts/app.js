@@ -12,19 +12,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   var app = document.querySelector('#app');
   
+  // Sets app default base URL
+  app.baseUrl = '/';
+  
   window.addEventListener('WebComponentsReady', function() {
     // imports are loaded and elements have been registered
     var pages = Polymer.dom(document).querySelector("#pages"),
         youTubePlayer = Polymer.dom(document).querySelector("google-youtube")
     
     // listen for change of video id: declared in index.html 'on-iron-select="selectedVideoIdChanged"'
-    app.selectedVideoIdChanged = function() {
-      pages.selected = "view";
+    app.selectedVideoIdChanged = function(e, detail) {
+      page('/view/' + detail.item.getAttribute('video-id'));
     }
     // listen for user to search and switch context when necessary
     Polymer.dom(document).querySelector("youtube-search-input").addEventListener('input', function(detail){
-      pages.selected = "search";
-      youTubePlayer.pause();
+      app.selectedVideoId = '';
+      page('/');
     });
   });
+  
+  // Scroll page to top
+  app.scrollPageToTop = function() {
+    app.$.headerPanelMain.scrollToTop(true);
+  };
 })(document);
