@@ -22,6 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     // listen for change of video id: declared in index.html 'on-iron-select="selectedVideoIdChanged"'
     app.selectedVideoIdChanged = function(e, detail) {
+      if (location.pathname === ('/view/' + detail.item.getAttribute('video-id'))) return;
       page('/view/' + detail.item.getAttribute('video-id'));
     }
     // listen for user to search and switch context when necessary
