@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>result-item</title>
+
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <script src="../bower_components/web-component-tester/browser.js"></script>
+
+  <!-- Import the element to test -->
+  <link rel="import" href="../elements/result-item/result-item.html">
+
+</head>
+<body>
+
+  <test-fixture id="basic">
+    <template>
+      <result-item></result-item>
+    </template>
+  </test-fixture>
+
+  <script>
+
+    suite('result-item tests', function() {
+      var resultItem, img, title, description;
+
+      setup(function() {
+        resultItem = fixture('basic');
+      });
+
+      test('Default values undefined (imageUrl, title, description)', function() {
+        assert.isUndefined(resultItem.imageUrl, 'imageUrl defaults to undefined');
+        assert.isUndefined(resultItem.title, 'imageUrl defaults to undefined');
+        assert.isUndefined(resultItem.description, 'imageUrl defaults to undefined');
+      });
+      
+      test('Values are set properly (imageUrl, title, description)', function() {
+        
+        resultItem.imageUrl = 'https://images/image.jpg';
+        resultItem.title = 'Element Title!';
+        resultItem.title = 'Element description.';
+          
+        // Data bindings will stamp out new DOM asynchronously
+        // so wait to check for updates
+        flush(function() {
+            // imageUrl
+            img = resultItem.$$('img');
+            assert.equal(img.src, 'https://images/image.jpg', 'imageUrl was set');
+            
+            // title
+            title = greeting.$$('.title');
+            assert.equal(title.textContent, 'Element Title!', 'title was set');
+            
+            // description
+            description = greeting.$$('.description');
+            assert.equal(description.textContent, 'Element description.', 'description was set');
+            
+            done();
+        });
+      });
+
+    });
+  </script>
+
+</body>
+</html>
