@@ -49,7 +49,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-toolbar>
         <div class="toolbar-wrapper layout horizontal ">
           <div class="title">YouTube Demo</div>
-          <youtube-search-input results="{{searchResults}}"></youtube-search-input>
+          <youtube-search search-query="{{searchQuery}}" is-ready="{{youTubeIsReady}}" results="{{searchResults}}"></youtube-search>
+          <paper-input id="query" no-label value="{{searchQuery}}" disabled$="[[!youTubeIsReady]]">
+            <iron-icon suffix icon="search"></iron-icon>
+          </paper-input>
         </div>
       </paper-toolbar>
 

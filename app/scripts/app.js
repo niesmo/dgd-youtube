@@ -26,7 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       page('/view/' + detail.item.getAttribute('video-id'));
     }
     // listen for user to search and switch context when necessary
-    Polymer.dom(document).querySelector("youtube-search-input").addEventListener('input', function(detail){
+    Polymer.dom(document).querySelector("paper-input#query").addEventListener('input', function(detail){
       if (location.pathname === '/') return;
       page('/');
     });
