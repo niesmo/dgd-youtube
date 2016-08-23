@@ -1,4 +1,4 @@
-# Michigan Dev Fest | Intor to Polymer | Demo
+# Michigan Dev Fest | Intro to Polymer | Demo
 ## Instructions
 
 * Install Gulp and Bower
